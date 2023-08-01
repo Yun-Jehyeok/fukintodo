@@ -1,5 +1,7 @@
 "use client";
 
+import Gnb from "@/components/gnb";
+import Header from "@/components/header";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -25,7 +27,15 @@ export default function RootLayout({
       <body>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools />
-          {children}
+          <div className="flex w-screen overflow-x-hidden font-base">
+            <Gnb />
+            <div className="flex-1">
+              <Header />
+              <div className="px-[45px] py-[45px] bg-[#f1f5f9] min-h-full">
+                {children}
+              </div>
+            </div>
+          </div>
         </QueryClientProvider>
       </body>
     </html>
