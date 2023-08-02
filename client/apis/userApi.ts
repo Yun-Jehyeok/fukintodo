@@ -1,7 +1,7 @@
-import { userIFC } from "@/interfaces/userIFC";
+import { signupIFC } from "@/interfaces/userIFC";
 import { Apis } from "@/utils/api";
 
-export const signupApi = async (user: userIFC) => {
+export const signupApi = async (user: signupIFC) => {
   try {
     const res = await Apis.post("/user/register", user);
     return res;

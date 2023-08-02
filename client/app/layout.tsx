@@ -3,12 +3,10 @@
 import Gnb from "@/components/gnb";
 import Header from "@/components/header";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query-devtools";
+import { RecoilRoot } from "recoil";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,18 +23,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools />
-          <div className="flex w-screen overflow-x-hidden font-base">
-            <Gnb />
-            <div className="flex-1">
-              <Header />
-              <div className="px-[45px] py-[45px] bg-[#f1f5f9] min-h-full">
-                {children}
+        <RecoilRoot>
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools />
+            <div className="flex w-screen overflow-x-hidden font-base">
+              <Gnb />
+              <div className="flex-1">
+                <Header />
+                <div className="px-[2.8125rem] py-[2.8125rem] bg-[#f1f5f9] min-h-full">
+                  {children}
+                </div>
               </div>
             </div>
-          </div>
-        </QueryClientProvider>
+          </QueryClientProvider>
+        </RecoilRoot>
       </body>
     </html>
   );
