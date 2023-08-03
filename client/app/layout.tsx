@@ -1,12 +1,13 @@
 "use client";
 
-import Gnb from "@/components/gnb";
+import Gnb from "@/components/Gnb/gnb";
 import Header from "@/components/header";
 import type { Metadata } from "next";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query-devtools";
 import { RecoilRoot } from "recoil";
 import "./globals.css";
+import "./satoshi.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",

@@ -21,7 +21,7 @@ export default function SignIn() {
       type: "email",
       label: "Email",
       placeholder: "Enter your email",
-      ico: "email",
+      ico: "bg-email",
     },
     {
       key: "password",
@@ -29,7 +29,7 @@ export default function SignIn() {
       type: "password",
       label: "Password",
       placeholder: "Enter your password",
-      ico: "pw",
+      ico: "bg-pw",
     },
   ];
 
@@ -79,7 +79,9 @@ export default function SignIn() {
     <div className="w-full py-[0.625rem] pl-[4.3125rem] pr-24">
       <div className="w-full flex justify-between items-center mb-[1.5625rem]">
         <div className="font-bold text-[1.625rem]">Sign In</div>
-        <div className="text-[#64748B] text-base">Dashboard / Sign In</div>
+        <div className="text-body text-base">
+          Dashboard / <span className="text-primary">Sign In</span>
+        </div>
       </div>
       <div className="w-full bg-white shadow-signup flex">
         <div className="w-1/2 flex justify-center items-center">
@@ -87,9 +89,7 @@ export default function SignIn() {
         </div>
         <div className="w-1/2 p-[4.375rem] border-l-2 border-[#E2E8F0] border-solid">
           <div className="w-full">
-            <div className="text-base text-[#64748B] mb-1.5">
-              Start for free
-            </div>
+            <div className="text-base text-body mb-1.5">Start for free</div>
             <div className="text-[#212B36] text-[2.0625rem] font-bold mb-[2.1875rem]">
               Sign In to Logo
             </div>
@@ -110,7 +110,7 @@ export default function SignIn() {
                         onChange={input.value.v.onChange}
                       />
                       <div
-                        className={`w-[1.375rem] h-[1.375rem] bg-center bg-no-repeat bg-cover bg-${input.ico}`}
+                        className={`w-[1.375rem] h-[1.375rem] bg-center bg-no-repeat bg-cover ${input.ico}`}
                       ></div>
                     </div>
                   </div>
@@ -130,7 +130,10 @@ export default function SignIn() {
             </button>
 
             <div className="text-center w-full mt-[1.5625rem]">
-              Don&apos;t have any account? <Link href="/signup">Sign up</Link>
+              Don&apos;t have any account?{" "}
+              <Link href="/signup" className="text-[#3056D3]">
+                Sign up
+              </Link>
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ export default function SignUp() {
       type: "text",
       label: "Name",
       placeholder: "Enter your name",
-      ico: "name",
+      ico: "bg-name",
     },
     {
       key: "email",
@@ -31,7 +31,7 @@ export default function SignUp() {
       type: "email",
       label: "Email",
       placeholder: "Enter your email",
-      ico: "email",
+      ico: "bg-email",
     },
     {
       key: "password",
@@ -39,7 +39,7 @@ export default function SignUp() {
       type: "password",
       label: "Password",
       placeholder: "Enter your password",
-      ico: "pw",
+      ico: "bg-pw",
     },
     {
       key: "pwCheck",
@@ -47,7 +47,7 @@ export default function SignUp() {
       type: "password",
       label: "Password Check",
       placeholder: "Re-Enter your password",
-      ico: "pw",
+      ico: "bg-pw",
     },
   ];
 
@@ -104,7 +104,9 @@ export default function SignUp() {
     <div className="w-full py-[0.625rem] pl-[4.3125rem] pr-24">
       <div className="w-full flex justify-between items-center mb-[1.5625rem]">
         <div className="font-bold text-[1.625rem]">Sign Up</div>
-        <div className="text-[#64748B] text-base">Dashboard / Sign Up</div>
+        <div className="text-body text-base">
+          Dashboard / <span className="text-primary">Sign Up</span>
+        </div>
       </div>
       <div className="w-full bg-white shadow-signup flex">
         <div className="w-1/2 flex justify-center items-center">
@@ -112,9 +114,7 @@ export default function SignUp() {
         </div>
         <div className="w-1/2 p-[4.375rem] border-l-2 border-[#E2E8F0] border-solid">
           <div className="w-full">
-            <div className="text-base text-[#64748B] mb-1.5">
-              Start for free
-            </div>
+            <div className="text-base text-body mb-1.5">Start for free</div>
             <div className="text-[#212B36] text-[2.0625rem] font-bold mb-[2.1875rem]">
               Sign Up to Logo
             </div>
@@ -135,7 +135,7 @@ export default function SignUp() {
                         onChange={input.value.v.onChange}
                       />
                       <div
-                        className={`w-[1.375rem] h-[1.375rem] bg-center bg-no-repeat bg-cover bg-${input.ico}`}
+                        className={`w-[1.375rem] h-[1.375rem] bg-center bg-no-repeat bg-cover ${input.ico}`}
                       ></div>
                     </div>
                   </div>
@@ -155,7 +155,10 @@ export default function SignUp() {
             </button>
 
             <div className="text-center w-full mt-[1.5625rem]">
-              Already has an Account? <Link href="/signin">Sign in</Link>
+              Already has an Account?{" "}
+              <Link href="/signin" className="text-[#3056D3]">
+                Sign in
+              </Link>
             </div>
           </div>
         </div>

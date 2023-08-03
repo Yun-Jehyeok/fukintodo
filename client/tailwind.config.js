@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        satoshi: ["Satoshi", "sans-serif"],
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -17,6 +20,43 @@ module.exports = {
       },
       fontFamily: {
         base: "Satoshi",
+      },
+      colors: {
+        current: "currentColor",
+        transparent: "transparent",
+        white: "#FFFFFF",
+        black: "#1C2434",
+        "black-2": "#010101",
+        body: "#64748B",
+        bodydark: "#AEB7C0",
+        bodydark1: "#DEE4EE",
+        bodydark2: "#8A99AF",
+        primary: "#3C50E0",
+        secondary: "#80CAEE",
+        stroke: "#E2E8F0",
+        gray: "#EFF4FB",
+        graydark: "#333A48",
+        "gray-2": "#F7F9FC",
+        "gray-3": "#FAFAFA",
+        whiten: "#F1F5F9",
+        whiter: "#F5F7FD",
+        boxdark: "#24303F",
+        "boxdark-2": "#1A222C",
+        strokedark: "#2E3A47",
+        "form-strokedark": "#3d4d60",
+        "form-input": "#1d2a39",
+        "meta-1": "#DC3545",
+        "meta-2": "#EFF2F7",
+        "meta-3": "#10B981",
+        "meta-4": "#313D4A",
+        "meta-5": "#259AE6",
+        "meta-6": "#FFBA00",
+        "meta-7": "#FF6766",
+        "meta-8": "#F0950C",
+        "meta-9": "#E5E7EB",
+        success: "#219653",
+        danger: "#D34053",
+        warning: "#FFA70B",
       },
       backgroundImage: {
         alarm: `url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.2 14.9343L15.6375 14.0624C15.525 13.8937 15.4688 13.7249 15.4688 13.528V7.67803C15.4688 6.01865 14.7657 4.47178 13.4719 3.31865C12.4313 2.39053 11.0813 1.7999 9.6469 1.6874V1.1249C9.6469 0.787402 9.36565 0.478027 9.00002 0.478027C8.66252 0.478027 8.35315 0.759277 8.35315 1.1249V1.65928C8.2969 1.65928 8.24065 1.65928 8.1844 1.6874C4.9219 2.05303 2.47502 4.66865 2.47502 7.79053V13.528C2.4469 13.8093 2.39065 13.9499 2.3344 14.0343L1.80002 14.9343C1.63127 15.2155 1.63127 15.553 1.80002 15.8343C1.96877 16.0874 2.25002 16.2562 2.5594 16.2562H8.38127V16.8749C8.38127 17.2124 8.66252 17.5218 9.02815 17.5218C9.36565 17.5218 9.67503 17.2405 9.67503 16.8749V16.2562H15.4688C15.7782 16.2562 16.0594 16.0874 16.2282 15.8343C16.3969 15.553 16.3969 15.2155 16.2 14.9343ZM3.2344 14.9905L3.43127 14.653C3.60002 14.3718 3.6844 14.0343 3.74065 13.6405V7.79053C3.74065 5.31553 5.7094 3.23428 8.32503 2.95303C9.92815 2.78428 11.5031 3.2624 12.6563 4.2749C13.6688 5.1749 14.2313 6.38428 14.2313 7.67803V13.528C14.2313 13.9499 14.3438 14.3437 14.5969 14.7374L14.7657 14.9905H3.2344Z' fill='%2364748B'/%3E%3C/svg%3E%0A")`,
