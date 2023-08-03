@@ -1,6 +1,6 @@
 "use client";
 
-import { signupApi } from "@/apis/userApi";
+import { signinApi } from "@/apis/userApi";
 import { useInput } from "@/hooks/useInput";
 import { userState } from "@/states/userStates";
 import Link from "next/link";
@@ -8,23 +8,13 @@ import { useCallback } from "react";
 import { useMutation } from "react-query";
 import { useRecoilState } from "recoil";
 
-export default function SignUp() {
+export default function SignIn() {
   const [user, setUser] = useRecoilState(userState);
 
-  const name = useInput("");
   const email = useInput("");
   const password = useInput("");
-  const pwCheck = useInput("");
 
   const inputs = [
-    {
-      key: "name",
-      value: name,
-      type: "text",
-      label: "Name",
-      placeholder: "Enter your name",
-      ico: "name",
-    },
     {
       key: "email",
       value: email,
@@ -41,31 +31,23 @@ export default function SignUp() {
       placeholder: "Enter your password",
       ico: "pw",
     },
-    {
-      key: "pwCheck",
-      value: pwCheck,
-      type: "password",
-      label: "Password Check",
-      placeholder: "Re-Enter your password",
-      ico: "pw",
-    },
   ];
 
-  const signupMutation = useMutation(signupApi, {
+  const signinMutation = useMutation(signinApi, {
     onMutate: (variable) => {
       console.log("onMutate", variable);
     },
     onError: (error, variable, context) => {
-      console.error("signupErr:::", error);
+      console.error("signinErr:::", error);
     },
     onSuccess: (data, variables, context) => {
-      console.log("signupSuccess", data, variables, context);
+      console.log("signinSuccess", data, variables, context);
       if (data.success) {
         setUser(data.user);
       }
     },
     onSettled: () => {
-      console.log("signupEnd");
+      console.log("signinEnd");
     },
   });
 
@@ -77,38 +59,31 @@ export default function SignUp() {
     ) => {
       event.preventDefault();
 
-      let nameVal = name.v.value;
       let emailVal = email.v.value;
       let pwVal = password.v.value;
-      let pcVal = pwCheck.v.value;
 
-      if (nameVal === "") return;
       if (emailVal === "") return;
       if (pwVal === "") return;
-      if (pcVal === "") return;
-      if (pwVal.length < 8 || pwVal.length > 12) return;
-      if (pwVal !== pcVal) return;
 
       let payload = {
-        name: nameVal,
         email: emailVal,
         password: pwVal,
       };
 
-      signupMutation.mutate(payload);
+      signinMutation.mutate(payload);
     },
-    [name, email, password, pwCheck, signupMutation]
+    [email, password, signinMutation]
   );
 
   return (
     <div className="w-full py-[0.625rem] pl-[4.3125rem] pr-24">
       <div className="w-full flex justify-between items-center mb-[1.5625rem]">
-        <div className="font-bold text-[1.625rem]">Sign Up</div>
-        <div className="text-[#64748B] text-base">Dashboard / Sign Up</div>
+        <div className="font-bold text-[1.625rem]">Sign In</div>
+        <div className="text-[#64748B] text-base">Dashboard / Sign In</div>
       </div>
       <div className="w-full bg-white shadow-signup flex">
         <div className="w-1/2 flex justify-center items-center">
-          Sign Up Images
+          Sign In Images
         </div>
         <div className="w-1/2 p-[4.375rem] border-l-2 border-[#E2E8F0] border-solid">
           <div className="w-full">
@@ -116,7 +91,7 @@ export default function SignUp() {
               Start for free
             </div>
             <div className="text-[#212B36] text-[2.0625rem] font-bold mb-[2.1875rem]">
-              Sign Up to Logo
+              Sign In to Logo
             </div>
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
               {inputs.map((input) => {
@@ -146,16 +121,16 @@ export default function SignUp() {
                 className="w-full h-14 bg-[#3056D3] text-white rounded-lg mt-[0.5625rem] text-base"
                 onClick={handleSubmit}
               >
-                Create Account
+                Sign In
               </button>
             </form>
 
             <button className="bg-[#E2E8F0] mt-5 w-full h-14 rounded-lg text-base">
-              Sign up With Google
+              Sign in With Google
             </button>
 
             <div className="text-center w-full mt-[1.5625rem]">
-              Already has an Account? <Link href="/signin">Sign in</Link>
+              Don&apos;t have any account? <Link href="/signup">Sign up</Link>
             </div>
           </div>
         </div>

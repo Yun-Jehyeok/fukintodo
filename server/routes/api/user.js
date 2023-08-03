@@ -8,6 +8,52 @@ const { JWT_SECRET } = config;
 
 const router = express.Router();
 
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email)
+    return res
+      .status(400)
+      .json({ success: false, msg: "이메일을 작성해주세요." });
+  else if (!password)
+    return res
+      .status(400)
+      .json({ success: false, msg: "비밀번호를 작성해주세요." });
+
+  User.findOne({ email }).then((user) => {
+    if (!user)
+      return res
+        .status(400)
+        .json({ success: false, msg: "이메일을 확인해주세요." });
+
+    bcrypt.compare(password, user.password).then((isMatch) => {
+      if (!isMatch)
+        return res
+          .status(400)
+          .json({ success: false, msg: "비밀번호를 확인해주세요." });
+
+      jwt.sign(
+        { id: user.id },
+        JWT_SECRET,
+        { expiresIn: 36000 },
+        (err, token) => {
+          if (err) return res.status(400).json({ success: false, msg: err });
+
+          res.json({
+            success: true,
+            token,
+            user: {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+            },
+          });
+        }
+      );
+    });
+  });
+});
+
 router.post("/register", (req, res) => {
   const { name, email, password, phone } = req.body;
 

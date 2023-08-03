@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Header() {
   return (
     <div className="w-full flex items-center pl-[2.1875rem] pr-[1.875rem] h-20 bg-white justify-between">
@@ -34,7 +36,7 @@ export default function Header() {
         <div className="mr-7">dark</div>
         <div className="mr-[0.9375rem] w-[2.125rem] h-[2.125rem] rounded-full bg-[#EFF4FB] bg-center bg-no-repeat bg-alarm cursor-pointer"></div>
         <div className="mr-9 w-[2.125rem] h-[2.125rem] rounded-full bg-[#EFF4FB] bg-center bg-no-repeat bg-chat cursor-pointer"></div>
-        <div>profile</div>
+        <Link href="/signin">profile</Link>
       </div>
     </div>
   );

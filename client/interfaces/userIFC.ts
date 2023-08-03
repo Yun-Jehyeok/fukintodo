@@ -9,3 +9,8 @@ export interface signupIFC {
   email: string;
   password: string;
 }
+
+export interface signinIFC {
+  email: string;
+  password: string;
+}
