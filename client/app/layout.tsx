@@ -1,11 +1,8 @@
-"use client";
-
 import Gnb from "@/components/Gnb/gnb";
+import QueryProviderWrapper from "@/components/QueryProviderWrapper";
+import RecoilRootWrapper from "@/components/RecoilRootWrapper";
 import Header from "@/components/header";
 import type { Metadata } from "next";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query-devtools";
-import { RecoilRoot } from "recoil";
 import "./globals.css";
 import "./satoshi.css";
 
@@ -19,14 +16,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const queryClient = new QueryClient();
-
   return (
     <html lang="en">
       <body>
-        <RecoilRoot>
-          <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools />
+        <RecoilRootWrapper>
+          <QueryProviderWrapper>
             <div className="flex w-screen overflow-x-hidden font-base">
               <Gnb />
               <div className="flex-1">
@@ -36,8 +30,8 @@ export default function RootLayout({
                 </div>
               </div>
             </div>
-          </QueryClientProvider>
-        </RecoilRoot>
+          </QueryProviderWrapper>
+        </RecoilRootWrapper>
       </body>
     </html>
   );
