@@ -27,30 +27,6 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: moment().format("MMMM DD, YYYY"),
   },
-  feeds: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "feed",
-    },
-  ],
-  notices: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "notice",
-    },
-  ],
-  photos: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "photo",
-    },
-  ],
-  comments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "comment",
-    },
-  ],
 });
 
 const User = mongoose.model("user", UserSchema);

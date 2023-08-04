@@ -1,14 +1,18 @@
 "use client";
 
 import { signinApi } from "@/apis/userApi";
+import Breadcrumb from "@/components/BreadCrumb";
 import { useInput } from "@/hooks/useInput";
 import { userState } from "@/states/userStates";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { useMutation } from "react-query";
 import { useRecoilState } from "recoil";
 
 export default function SignIn() {
+  const router = useRouter();
+
   const [user, setUser] = useRecoilState(userState);
 
   const email = useInput("");
@@ -43,7 +47,7 @@ export default function SignIn() {
     onSuccess: (data, variables, context) => {
       console.log("signinSuccess", data, variables, context);
       if (data.success) {
-        setUser(data.user);
+        router.push("/");
       }
     },
     onSettled: () => {
@@ -77,12 +81,8 @@ export default function SignIn() {
 
   return (
     <div className="w-full py-[0.625rem] pl-[4.3125rem] pr-24">
-      <div className="w-full flex justify-between items-center mb-[1.5625rem]">
-        <div className="font-bold text-[1.625rem]">Sign In</div>
-        <div className="text-body text-base">
-          Dashboard / <span className="text-primary">Sign In</span>
-        </div>
-      </div>
+      <Breadcrumb pageName="Sign In" />
+
       <div className="w-full bg-white shadow-signup flex">
         <div className="w-1/2 flex justify-center items-center">
           Sign In Images

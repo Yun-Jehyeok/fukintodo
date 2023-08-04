@@ -1,17 +1,12 @@
 import Link from "next/link";
+import DarkModeSwitcher from "./DarkModeSwitcher";
 
 export default function Header() {
   return (
     <div className="w-full flex items-center pl-[2.1875rem] pr-[1.875rem] h-20 bg-white justify-between">
       <div className="flex gap-5">
         <div className="flex items-center">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               fillRule="evenodd"
               clipRule="evenodd"
@@ -26,14 +21,10 @@ export default function Header() {
             />
           </svg>
         </div>
-        <input
-          className="focus focus:border-none focus:outline-none"
-          type="text"
-          placeholder="Type to search.."
-        />
+        <input className="focus focus:border-none focus:outline-none" type="text" placeholder="Type to search.." />
       </div>
-      <div className="flex">
-        <div className="mr-7">dark</div>
+      <div className="flex items-center">
+        <DarkModeSwitcher />
         <div className="mr-[0.9375rem] w-[2.125rem] h-[2.125rem] rounded-full bg-[#EFF4FB] bg-center bg-no-repeat bg-alarm cursor-pointer"></div>
         <div className="mr-9 w-[2.125rem] h-[2.125rem] rounded-full bg-[#EFF4FB] bg-center bg-no-repeat bg-chat cursor-pointer"></div>
         <Link href="/signin">profile</Link>
