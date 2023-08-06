@@ -1,12 +1,39 @@
-import Link from "next/link";
-import DarkModeSwitcher from "./DarkModeSwitcher";
+'use client';
+
+import Link from 'next/link';
+import DarkModeSwitcher from './DarkModeSwitcher';
+import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { userState } from '@/states/userStates';
 
 export default function Header() {
+  const [user, setUser] = useRecoilState(userState);
+  const [isLogin, setIsLogin] = useState(user.token !== '');
+
+  useEffect(() => {
+    setIsLogin(user.token !== '');
+  }, [user]);
+
+  const handleLogout = () => {
+    setUser({
+      id: '',
+      name: '',
+      email: '',
+      token: '',
+    });
+  };
+
   return (
     <div className="w-full flex items-center pl-[2.1875rem] pr-[1.875rem] h-20 bg-white justify-between">
       <div className="flex gap-5">
         <div className="flex items-center">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               fillRule="evenodd"
               clipRule="evenodd"
@@ -21,13 +48,39 @@ export default function Header() {
             />
           </svg>
         </div>
-        <input className="focus focus:border-none focus:outline-none" type="text" placeholder="Type to search.." />
+        <input
+          className="focus focus:border-none focus:outline-none"
+          type="text"
+          placeholder="Type to search.."
+        />
       </div>
       <div className="flex items-center">
         <DarkModeSwitcher />
         <div className="mr-[0.9375rem] w-[2.125rem] h-[2.125rem] rounded-full bg-[#EFF4FB] bg-center bg-no-repeat bg-alarm cursor-pointer"></div>
-        <div className="mr-9 w-[2.125rem] h-[2.125rem] rounded-full bg-[#EFF4FB] bg-center bg-no-repeat bg-chat cursor-pointer"></div>
-        <Link href="/signin">profile</Link>
+        <div
+          className={`${
+            isLogin ? 'mr-9' : 'mr-[0.9375rem]'
+          } w-[2.125rem] h-[2.125rem] rounded-full bg-[#EFF4FB] bg-center bg-no-repeat bg-chat cursor-pointer`}
+        ></div>
+        {isLogin ? (
+          <div className="flex items-center">
+            <div className="mr-[15px]">
+              <div className=" text-sm text-[#212B36]">{user.name}</div>
+              <div className="text-xs text-[#637381]">Frontend</div>
+            </div>
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={handleLogout}
+            >
+              <div className="mr-2.5 w-[46px] h-[46px] rounded-full bg-white border border-stroke border-solid"></div>
+              <div className="w-5 h-5 bg-barrDark bg-center bg-no-repeat"></div>
+            </div>
+          </div>
+        ) : (
+          <Link href="/signin">
+            <div className="w-[2.125rem] h-[2.125rem] rounded-full bg-[#EFF4FB] bg-center bg-no-repeat bg-login cursor-pointer"></div>
+          </Link>
+        )}
       </div>
     </div>
   );

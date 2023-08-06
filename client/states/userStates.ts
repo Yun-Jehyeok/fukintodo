@@ -7,5 +7,6 @@ export const userState = atom<userIFC>({
     name: "",
     email: "",
     id: "",
+    token: ''
   },
 });

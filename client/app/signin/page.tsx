@@ -1,57 +1,58 @@
-"use client";
+'use client';
 
-import { signinApi } from "@/apis/userApi";
-import Breadcrumb from "@/components/BreadCrumb";
-import { useInput } from "@/hooks/useInput";
-import { userState } from "@/states/userStates";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useCallback } from "react";
-import { useMutation } from "react-query";
-import { useRecoilState } from "recoil";
+import { signinApi } from '@/apis/userApi';
+import Breadcrumb from '@/components/BreadCrumb';
+import { useInput } from '@/hooks/useInput';
+import { userState } from '@/states/userStates';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useCallback } from 'react';
+import { useMutation } from 'react-query';
+import { useRecoilState } from 'recoil';
 
 export default function SignIn() {
   const router = useRouter();
 
   const [user, setUser] = useRecoilState(userState);
 
-  const email = useInput("");
-  const password = useInput("");
+  const email = useInput('');
+  const password = useInput('');
 
   const inputs = [
     {
-      key: "email",
+      key: 'email',
       value: email,
-      type: "email",
-      label: "Email",
-      placeholder: "Enter your email",
-      ico: "bg-email",
+      type: 'email',
+      label: 'Email',
+      placeholder: 'Enter your email',
+      ico: 'bg-email',
     },
     {
-      key: "password",
+      key: 'password',
       value: password,
-      type: "password",
-      label: "Password",
-      placeholder: "Enter your password",
-      ico: "bg-pw",
+      type: 'password',
+      label: 'Password',
+      placeholder: 'Enter your password',
+      ico: 'bg-pw',
     },
   ];
 
   const signinMutation = useMutation(signinApi, {
     onMutate: (variable) => {
-      console.log("onMutate", variable);
+      console.log('onMutate', variable);
     },
     onError: (error, variable, context) => {
-      console.error("signinErr:::", error);
+      console.error('signinErr:::', error);
     },
     onSuccess: (data, variables, context) => {
-      console.log("signinSuccess", data, variables, context);
+      console.log('signinSuccess', data, variables, context);
       if (data.success) {
-        router.push("/");
+        setUser({ ...data.user, token: data.token });
+        router.push('/');
       }
     },
     onSettled: () => {
-      console.log("signinEnd");
+      console.log('signinEnd');
     },
   });
 
@@ -59,15 +60,15 @@ export default function SignIn() {
     (
       event:
         | React.FormEvent<HTMLFormElement>
-        | React.MouseEvent<HTMLButtonElement>
+        | React.MouseEvent<HTMLButtonElement>,
     ) => {
       event.preventDefault();
 
       let emailVal = email.v.value;
       let pwVal = password.v.value;
 
-      if (emailVal === "") return;
-      if (pwVal === "") return;
+      if (emailVal === '') return;
+      if (pwVal === '') return;
 
       let payload = {
         email: emailVal,
@@ -76,7 +77,7 @@ export default function SignIn() {
 
       signinMutation.mutate(payload);
     },
-    [email, password, signinMutation]
+    [email, password, signinMutation],
   );
 
   return (
@@ -130,7 +131,7 @@ export default function SignIn() {
             </button>
 
             <div className="text-center w-full mt-[1.5625rem]">
-              Don&apos;t have any account?{" "}
+              Don&apos;t have any account?{' '}
               <Link href="/signup" className="text-[#3056D3]">
                 Sign up
               </Link>
