@@ -4,40 +4,128 @@ import Breadcrumb from "@/components/BreadCrumb";
 import { Key, useEffect, useState } from "react";
 import DailySchedule from "./DailySchedule";
 
-const dummyTodos = [
+const todoList = [
   {
-    id: "1",
     date: "2023-08-06",
-    startTime: "06:00",
-    endTime: "08:00",
-    title: "Calendar 개발",
-    content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+    data: [
+      {
+        id: "1",
+        date: "2023-08-06",
+        startTime: "06:00",
+        endTime: "08:00",
+        title: "Calendar 개발",
+        content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+      },
+      {
+        id: "2",
+        date: "2023-08-06",
+        startTime: "08:00",
+        endTime: "10:00",
+        title: "팀장 면담",
+        content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+      },
+      {
+        id: "3",
+        date: "2023-08-06",
+        startTime: "12:00",
+        endTime: "14:00",
+        title: "퇴근하고싶다",
+        content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+      },
+      {
+        id: "4",
+        date: "2023-08-06",
+        startTime: "14:30",
+        endTime: "18:00",
+        title: "집에가고싶다",
+        content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+      },
+    ],
   },
   {
-    id: "2",
-    date: "2023-08-06",
-    startTime: "08:00",
-    endTime: "10:00",
-    title: "팀장 면담",
-    content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+    date: "2023-08-14",
+    data: [
+      {
+        id: "1",
+        date: "2023-08-14",
+        startTime: "06:00",
+        endTime: "08:00",
+        title: "Calendar 개발1",
+        content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+      },
+      {
+        id: "2",
+        date: "2023-08-14",
+        startTime: "08:00",
+        endTime: "10:00",
+        title: "팀장 면담1",
+        content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+      },
+      {
+        id: "3",
+        date: "2023-08-14",
+        startTime: "12:00",
+        endTime: "14:00",
+        title: "퇴근하고싶다1",
+        content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+      },
+      {
+        id: "4",
+        date: "2023-08-14",
+        startTime: "14:30",
+        endTime: "18:00",
+        title: "집에가고싶다1",
+        content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+      },
+    ],
   },
   {
-    id: "3",
-    date: "2023-08-06",
-    startTime: "12:00",
-    endTime: "14:00",
-    title: "퇴근하고싶다",
-    content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
-  },
-  {
-    id: "4",
-    date: "2023-08-06",
-    startTime: "14:30",
-    endTime: "18:00",
-    title: "집에가고싶다",
-    content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+    date: "2023-08-26",
+    data: [
+      {
+        id: "1",
+        date: "2023-08-26",
+        startTime: "06:00",
+        endTime: "08:00",
+        title: "Calendar 개발2",
+        content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+      },
+      {
+        id: "2",
+        date: "2023-08-26",
+        startTime: "08:00",
+        endTime: "10:00",
+        title: "팀장 면담2",
+        content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+      },
+      {
+        id: "3",
+        date: "2023-08-26",
+        startTime: "12:00",
+        endTime: "14:00",
+        title: "퇴근하고싶다2",
+        content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+      },
+      {
+        id: "4",
+        date: "2023-08-26",
+        startTime: "14:30",
+        endTime: "18:00",
+        title: "집에가고싶다2",
+        content: "상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세내용",
+      },
+    ],
   },
 ];
+
+interface todoIFC {
+  id: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  title: string;
+  content: string;
+}
 
 interface calendarIFC {
   id: Key;
@@ -46,12 +134,15 @@ interface calendarIFC {
   date: string;
   day: string;
   isActive: boolean;
+  fullDate: string;
+  todos: todoIFC[];
 }
 
 export default function Calendar() {
-  const [calendar, setCalendar] = useState<calendarIFC[]>([{ id: "0", year: "0", month: "0", date: "0", day: "0", isActive: false }]);
+  const [calendar, setCalendar] = useState<calendarIFC[]>([{ id: "0", year: "0", month: "0", fullDate: "0", date: "0", day: "0", isActive: false, todos: [] }]);
   const [currentYear, setCurrentYear] = useState("");
   const [currentMonth, setCurrentMonth] = useState("");
+  const [plans, setPlans] = useState<todoIFC[]>([]);
 
   const resetCalendar = (flag: Date) => {
     let year = String(flag.getFullYear());
@@ -67,7 +158,9 @@ export default function Calendar() {
     let prevGap = firstDay.getDay();
     let prevMonthLastDate = new Date(flag.getFullYear(), flag.getMonth(), 0).getDate();
 
-    for (let i = prevMonthLastDate - prevGap; i <= prevMonthLastDate; i++) {
+    let nextGap = 6 - lastDay.getDay();
+
+    for (let i = prevMonthLastDate - prevGap + 1; i <= prevMonthLastDate; i++) {
       let newDate = new Date(flag.getFullYear(), flag.getMonth() - 1, i);
       let year = newDate.getFullYear();
       let month = newDate.getMonth() + 1;
@@ -87,9 +180,7 @@ export default function Calendar() {
       calendarData.push({ id: String(i), year: String(year), month: String(month), date: String(date), day: String(day), isActive: true });
     }
 
-    let nextGap = 6 - lastDay.getDay() === 0 ? 7 : 6 - lastDay.getDay();
-
-    for (let i = 1; i <= nextGap - 1; i++) {
+    for (let i = 1; i <= nextGap; i++) {
       let newDate = new Date(flag.getFullYear(), flag.getMonth() + 1, i);
       let year = newDate.getFullYear();
       let month = newDate.getMonth() + 1;
@@ -98,6 +189,15 @@ export default function Calendar() {
 
       calendarData.push({ id: String(lastDay.getDate() + i), year: String(year), month: String(month), date: String(date), day: String(day), isActive: false });
     }
+
+    calendarData = calendarData.map((v) => {
+      let m = Number(v.month) <= 9 ? `0${v.month}` : v.month;
+      let d = Number(v.date) <= 9 ? `0${v.date}` : v.date;
+      let fullDate = `${v.year}-${m}-${d}`;
+
+      let todos = todoList.filter((v) => v.date === fullDate);
+      return { ...v, fullDate, todos: todos.length > 0 ? todos[0].data : [] };
+    });
 
     setCalendar(calendarData);
   };
@@ -115,11 +215,9 @@ export default function Calendar() {
     if (month === 1) {
       year -= 1;
       month = 12;
-    } else {
-      month -= 1;
-    }
+    } else month -= 1;
 
-    let flag = new Date(Number(year), Number(month), 15);
+    let flag = new Date(Number(year), Number(month - 1), 15);
 
     resetCalendar(flag);
   };
@@ -132,12 +230,24 @@ export default function Calendar() {
       month = 1;
     } else month += 1;
 
-    let flag = new Date(Number(year), Number(month), 15);
+    let flag = new Date(Number(year), Number(month - 1), 15);
     resetCalendar(flag);
   };
 
-  const handleTodoData = () => {
-    console.log("here");
+  const handleTodoData = (e: React.MouseEvent<HTMLDivElement>) => {
+    let isActive = e.currentTarget.dataset.active;
+    let id = e.currentTarget.dataset.id;
+
+    if (isActive === "true") {
+      let target = e.currentTarget.dataset.date;
+
+      let plan = todoList.filter((v) => v.date === target);
+      if (plan.length > 0) setPlans(plan[0].data);
+      else setPlans([]);
+    } else {
+      if (Number(id) < 0) handleDecreaseMonth();
+      else handleIncreaseMonth();
+    }
   };
 
   return (
@@ -188,18 +298,33 @@ export default function Calendar() {
               <div className="w-full grid grid-cols-7">
                 {calendar.map((v) => {
                   return (
-                    <div key={v.id} className="ease relative h-20 cursor-pointer border border-stroke p-2 transition duration-500 hover:bg-gray dark:border-strokedark dark:hover:bg-meta-4">
+                    <div
+                      key={v.id}
+                      data-id={v.id}
+                      data-active={v.isActive}
+                      data-date={v.fullDate}
+                      onClick={handleTodoData}
+                      className="ease relative h-20 cursor-pointer border border-stroke p-2 transition duration-500 hover:bg-gray dark:border-strokedark dark:hover:bg-meta-4"
+                    >
                       <span className={`font-medium ${v.isActive ? "text-black" : "text-bodydark"}`}>{v.date}</span>
-                      <div>
-                        <div className="flex gap-1 items-center">
-                          <div className="w-2 h-2 rounded-full bg-[#019C63]"></div>
-                          <div className="text-xs flex-1 overflow-hidden text-ellipsis whitespace-nowrap">Calendar 개발</div>
+                      {v.todos.length > 0 ? (
+                        <div>
+                          <div className="flex gap-1 items-center">
+                            <div className="w-2 h-2 rounded-full bg-[#019C63]"></div>
+                            <div className="text-xs flex-1 overflow-hidden text-ellipsis whitespace-nowrap">{v.todos[0].title}</div>
+                          </div>
+                          {v.todos.length > 1 ? (
+                            <div className="flex gap-1 items-center">
+                              <div className="w-2 h-2 rounded-full bg-[#464E64]"></div>
+                              <div className="text-xs flex-1 overflow-hidden text-ellipsis whitespace-nowrap">{v.todos[1].title}</div>
+                            </div>
+                          ) : (
+                            ""
+                          )}
                         </div>
-                        <div className="flex gap-1 items-center">
-                          <div className="w-2 h-2 rounded-full bg-[#464E64]"></div>
-                          <div className="text-xs flex-1 overflow-hidden text-ellipsis whitespace-nowrap">팀장 면담</div>
-                        </div>
-                      </div>
+                      ) : (
+                        ""
+                      )}
                     </div>
                   );
                 })}
@@ -209,7 +334,7 @@ export default function Calendar() {
         </div>
 
         <div className="flex-1">
-          <DailySchedule />
+          <DailySchedule todos={plans} />
         </div>
       </div>
     </div>
