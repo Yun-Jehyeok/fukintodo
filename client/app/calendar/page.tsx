@@ -117,6 +117,15 @@ const todoList = [
     ],
   },
 ];
+const days = [
+  { id: 0, day: "Sunday", shortDay: "Sun" },
+  { id: 1, day: "Monday", shortDay: "Mon" },
+  { id: 2, day: "Tuesday", shortDay: "Tue" },
+  { id: 3, day: "Wednesday", shortDay: "Wed" },
+  { id: 4, day: "Thursday", shortDay: "Thur" },
+  { id: 5, day: "Friday", shortDay: "Fri" },
+  { id: 6, day: "Saturday", shortDay: "Sat" },
+];
 
 interface todoIFC {
   id: string;
@@ -265,34 +274,19 @@ export default function Calendar() {
         <div className="w-[70%] h-fit max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
           <div className="w-full">
             <div className="w-full grid grid-cols-7 rounded-t-sm bg-primary text-white">
-              <div className="flex h-15 items-center justify-center rounded-tl-sm p-1 text-xs font-semibold sm:text-base xl:p-5">
-                <span className="hidden lg:block">Sunday</span>
-                <span className="block lg:hidden">Sun</span>
-              </div>
-              <div className="flex h-15 items-center justify-center p-1 text-xs font-semibold sm:text-base xl:p-5">
-                <span className="hidden lg:block">Monday</span>
-                <span className="block lg:hidden">Mon</span>
-              </div>
-              <div className="flex h-15 items-center justify-center p-1 text-xs font-semibold sm:text-base xl:p-5">
-                <span className="hidden lg:block">Tuesday</span>
-                <span className="block lg:hidden">Tue</span>
-              </div>
-              <div className="flex h-15 items-center justify-center p-1 text-xs font-semibold sm:text-base xl:p-5">
-                <span className="hidden lg:block">Wednesday</span>
-                <span className="block lg:hidden">Wed</span>
-              </div>
-              <div className="flex h-15 items-center justify-center p-1 text-xs font-semibold sm:text-base xl:p-5">
-                <span className="hidden lg:block">Thursday</span>
-                <span className="block lg:hidden">Thur</span>
-              </div>
-              <div className="flex h-15 items-center justify-center p-1 text-xs font-semibold sm:text-base xl:p-5">
-                <span className="hidden lg:block">Friday</span>
-                <span className="block lg:hidden">Fri</span>
-              </div>
-              <div className="flex h-15 items-center justify-center rounded-tr-sm p-1 text-xs font-semibold sm:text-base xl:p-5">
-                <span className="hidden lg:block">Saturday</span>
-                <span className="block lg:hidden">Sat</span>
-              </div>
+              {days.map((v) => {
+                return (
+                  <div
+                    key={v.id}
+                    className={`flex h-15 items-center justify-center ${
+                      v.shortDay === "Sun" ? "rounded-tl-sm" : v.shortDay === "Sat" ? "rounded-tr-sm" : ""
+                    } p-1 text-xs font-semibold sm:text-base xl:p-5`}
+                  >
+                    <span className="hidden lg:block">{v.day}</span>
+                    <span className="block lg:hidden">{v.shortDay}</span>
+                  </div>
+                );
+              })}
             </div>
             <div className="w-full">
               <div className="w-full grid grid-cols-7">

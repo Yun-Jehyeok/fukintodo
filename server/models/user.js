@@ -27,6 +27,7 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: moment().format("MMMM DD, YYYY"),
   },
+  todos: [{ type: mongoose.Schema.Types.ObjectId, ref: "todo" }],
 });
 
 const User = mongoose.model("user", UserSchema);

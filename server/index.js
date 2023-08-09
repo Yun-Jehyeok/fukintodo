@@ -48,6 +48,7 @@ mongoose
   });
 
 app.use("/api/user", require("./routes/api/user"));
+app.use("/api/todo", require("./routes/api/todo"));
 
 app.listen(port, () => {
   console.log(`Server started on ${PORT} port`);
