@@ -62,8 +62,8 @@ export default function SignIn() {
     (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
 
-      let emailVal = email.v.value;
-      let pwVal = password.v.value;
+      let emailVal = email.value;
+      let pwVal = password.value;
 
       if (emailVal === "") return;
       if (pwVal === "") return;
@@ -99,8 +99,8 @@ export default function SignIn() {
                         name={input.key}
                         type={input.type}
                         placeholder={input.placeholder}
-                        value={input.value.v.value}
-                        onChange={input.value.v.onChange}
+                        value={input.value.value}
+                        onChange={input.value.onChange}
                       />
                       <div className={`w-[1.375rem] h-[1.375rem] bg-center bg-no-repeat bg-cover ${input.ico}`}></div>
                     </div>

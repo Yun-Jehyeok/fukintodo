@@ -82,11 +82,11 @@ export default function CreateSchedule({ cancel }: propsIFC) {
     (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
 
-      let dateVal = date.v.value;
-      let startTimeVal = startTime.v.value;
-      let endTimeVal = endTime.v.value;
-      let titleVal = title.v.value;
-      let contentVal = content.v.value;
+      let dateVal = date.value;
+      let startTimeVal = startTime.value;
+      let endTimeVal = endTime.value;
+      let titleVal = title.value;
+      let contentVal = content.value;
 
       let payload = {
         date: dateVal,
@@ -125,8 +125,8 @@ export default function CreateSchedule({ cancel }: propsIFC) {
                     name={input.key}
                     type={input.type}
                     placeholder={input.placeholder}
-                    value={input.value.v.value}
-                    onChange={input.value.v.onChange}
+                    value={input.value.value}
+                    onChange={input.value.onChange}
                   />
                 </div>
               </div>
