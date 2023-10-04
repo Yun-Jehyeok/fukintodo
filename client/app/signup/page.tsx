@@ -4,6 +4,7 @@ import { signupApi } from "@/apis/userApi";
 import Breadcrumb from "@/components/BreadCrumb";
 import { useInput } from "@/hooks/useInput";
 import { userState } from "@/states/userStates";
+import { checkEmail, checkPassword } from "@/utils/validation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
@@ -77,24 +78,20 @@ export default function SignUp() {
       let pc_v = pwCheck.value;
 
       if (name_v === "") {
-        console.log("here", { ...errors, name: true });
         setErrors({ ...errors, name: true });
-        console.log("errors:::", errors);
         setErrMsg({ ...errMsg, name: "이름을 입력해주세요" });
-        console.log("errMsg:::", errMsg);
       }
 
-      if (email_v === "") {
+      let emailResult = checkEmail(email_v)
+      if (!emailResult.success) {
         setErrors({ ...errors, email: true });
-        setErrMsg({ ...errMsg, email: "이메일을 입력해주세요" });
+        setErrMsg({ ...errMsg, email: emailResult.msg! });
       }
 
-      if (pw_v === "") {
+      let pwResult = checkPassword(pw_v)
+      if (!pwResult.success) {
         setErrors({ ...errors, password: true });
-        setErrMsg({ ...errMsg, password: "비밀번호를 입력해주세요" });
-      } else if (pw_v.length < 8 || pw_v.length > 12) {
-        setErrors({ ...errors, password: true });
-        setErrMsg({ ...errMsg, password: "비밀번호는 8~12자 입니다." });
+        setErrMsg({ ...errMsg, password: pwResult.msg! });
       }
 
       if (pc_v === "") {
@@ -105,7 +102,6 @@ export default function SignUp() {
         setErrMsg({ ...errMsg, pwCheck: "비밀번호와 비밀번호 확인은 동일해야 합니다." });
       }
 
-      console.log("errors:::", errors);
       if (errors.name || errors.email || errors.pwCheck || errors.password) {
         return;
       } else {

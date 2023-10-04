@@ -4,6 +4,7 @@ import { signinApi } from "@/apis/userApi";
 import Breadcrumb from "@/components/BreadCrumb";
 import { useInput } from "@/hooks/useInput";
 import { userState } from "@/states/userStates";
+import { checkEmail, checkPassword } from "@/utils/validation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
@@ -65,8 +66,11 @@ export default function SignIn() {
       let emailVal = email.value;
       let pwVal = password.value;
 
-      if (emailVal === "") return;
-      if (pwVal === "") return;
+      let emailResult = checkEmail(emailVal);
+      let pwResult = checkPassword(pwVal);
+
+      if (!emailResult.success) return;
+      if (!pwResult.success) return;
 
       let payload = {
         email: emailVal,
