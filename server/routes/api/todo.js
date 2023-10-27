@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
             todos: newTodo,
           },
         })
-          .then(() => {
+          .then((t) => {
             User.findOne({ _id: userId })
               .populate("todos")
               .then((test) => {
@@ -43,8 +43,8 @@ router.post("/", (req, res) => {
   });
 });
 
-router.put("/", (req, res) => {});
+router.put("/", (req, res) => { });
 
-router.delete("/", (req, res) => {});
+router.delete("/", (req, res) => { });
 
 module.exports = router;
